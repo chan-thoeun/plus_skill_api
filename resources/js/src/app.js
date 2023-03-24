@@ -16,7 +16,6 @@ root.render(
 	<Provider store={ store }>
 		<ThemeProvider defaultTheme="light">
 			<MouseMoveProvider>
-				{/* <Component { ...pageProps } /> */}
 				<MyApp />
 			</MouseMoveProvider>
 			<Theme />

@@ -12,15 +12,28 @@ const RegisterForm = () => {
     const { registerWithEmailPassword } = useFirebase();
     // use formik
     const { handleChange, handleSubmit, handleBlur, errors, values, touched } = useFormik({
-        initialValues: { name: '', email: '', password: '', terms: false },
+        initialValues: { name: '', email: '', password: '', roles: '', terms: false },
         validationSchema: registerSchema,
+
         onSubmit: (values, { resetForm }) => {
-            registerWithEmailPassword(values.email, values.password, values.name)
-            resetForm()
+            console.log('====================================');
+            console.log('values',values);
+            console.log('====================================');
+
+            // registerWithEmailPassword(values.email, values.password, values.name)
+            // resetForm()
         }
     })
     return (
         <form onSubmit={handleSubmit}>
+             <div className="form-group">
+                <div className="edu-form-check">
+                    <input type="radio" id="teacher" name="roles" value="2" onChange={handleChange}/><label for="teacher">Teacher</label>
+                </div>
+                <div className="edu-form-check mb-3">
+                    <input type="radio" id="student" name="roles" value="3" onChange={handleChange}/><label for="student">Student</label>
+                </div>
+            </div>
             <div className="form-group">
                 <label htmlFor="reg-name">Name*</label>
                 <input value={values.name} onChange={handleChange} onBlur={handleBlur} type="text" name="name" id="reg-name" placeholder="Full name" />
