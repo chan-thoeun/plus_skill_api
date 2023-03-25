@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\auth\AuthController;
+use App\Http\Controllers\Api\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +26,8 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('api.logout');
 });
 
-Route::group(['middleware' => ['cors', 'json.response']], function () {
-    //users
-    Route::get('/profile', [AuthController::class, 'index'])->name('api.index');
-});
+// Route::group(['middleware' => ['cors', 'json.response']], function () {
+//     //users
+//     Route::get('/profile', [AuthController::class, 'index'])->name('api.index');
+// });
 

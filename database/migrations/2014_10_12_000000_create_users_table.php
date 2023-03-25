@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('roles')->default(1); // 1 = admin , 2 = teacher, 3 = student
-            $table->text('token');
+            $table->text('token')->default('');
+            $table->boolean('terms')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

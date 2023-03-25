@@ -1,27 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import useFirebase from '../../hooks/use-firebase';
 import { registerSchema } from '../../utils/validation-schema';
 import ErrorMsg from './error-msg';
 import Link from 'next/link';
-import { useState } from 'react';
+import { toast } from "react-toastify";
+import { userSignUp } from '../../services/auth/Auth';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
+    const navigate = useNavigate();
     const [showPass, setShowPass] = useState(false);
-    // register With Email Password
-    const { registerWithEmailPassword } = useFirebase();
     // use formik
     const { handleChange, handleSubmit, handleBlur, errors, values, touched } = useFormik({
         initialValues: { name: '', email: '', password: '', roles: '', terms: false },
         validationSchema: registerSchema,
 
-        onSubmit: (values, { resetForm }) => {
-            console.log('====================================');
-            console.log('values',values);
-            console.log('====================================');
-
-            // registerWithEmailPassword(values.email, values.password, values.name)
-            // resetForm()
+        onSubmit: async(values, { resetForm }) => {
+            try {
+                const res = await userSignUp(values);
+                if(res){
+                    toast.success(`Register successfully`, {
+                        position: 'top-right'
+                    })
+                    navigate('')
+                }
+            }
+            catch(error){
+                const errorMessage = error?.message;
+                toast.error(`${errorMessage}`, {
+                    position: 'top-right'
+                })
+            }
         }
     })
     return (

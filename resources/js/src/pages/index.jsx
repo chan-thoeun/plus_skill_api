@@ -4,9 +4,6 @@ import { Wrapper } from '../layout';
 
 export default function Home() {
     return (
-        <Wrapper>
-            <SEO pageTitle={'Home Main'} />
-            <HomeMain />
-        </Wrapper>
+       <HomeMain />
     )
 }

@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import useFirebase from '../../hooks/use-firebase';
 import { loginSchema } from '../../utils/validation-schema';
 import ErrorMsg from './error-msg';
-import { useState } from 'react';
+import { toast } from "react-toastify";
+import { userSignIn } from '../../services/auth/Auth';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [showPass,setShowPass] = useState(false);
-    // use firebase 
-    const { loginWithEmailPassword, resetPassword } = useFirebase();
     // use formik
     const { handleChange, handleSubmit, handleBlur, errors, values, touched } = useFormik({
         initialValues: { email: '', password: '' },
         validationSchema: loginSchema,
-        onSubmit: (values, { resetForm }) => {
-            loginWithEmailPassword(values.email, values.password)
-            resetForm()
+        onSubmit: async(values) => {
+            try {
+                const res = await userSignIn(values);
+                if(res.status == 200){
+                    toast.success(`Login successfully`, {
+                        position: 'top-right'
+                    })
+                    navigate('/')
+                }
+            }catch(error){
+                const errorMessage = error?.message;
+                toast.error(`${errorMessage}`, {
+                    position: 'top-right'
+                })
+            }
         }
     })
 

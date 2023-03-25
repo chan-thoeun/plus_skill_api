@@ -106,14 +106,6 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                             <i className="icon-2"></i>
                                         </a>
                                     </li>
-                                    <li className="icon">
-                                        <Link href="/wishlist">
-                                            <a className="wishlist">
-                                                <i className="icon-22"></i>
-                                                <span className="count">{wishlists?.length}</span>
-                                            </a>
-                                        </Link>
-                                    </li>
                                     <li className="icon cart-icon">
                                         <Link href="/cart">
                                             <a className="cart-icon">
@@ -121,6 +113,10 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                                 <span className="count">{quantity}</span>
                                             </a>
                                         </Link>
+                                        <Cart />
+                                    </li>
+                                    <li className="icon cart-icon">
+                                        <img src="https://edublink.react.devsblink.com/assets/images/blog/comment-01.jpg" alt="Comment Images" style={{width: "50px", borderRadius: "50px"}}/>
                                         <Cart />
                                     </li>
                                     <li className="header-btn">
