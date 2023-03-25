@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import useModal from '../../hooks/use-modal';
 import VideoModal from '../common/popup-modal/video-modal';
 import DetailsSidebar from './details-sidebar';
@@ -53,9 +53,9 @@ const CourseDetailsThree = () => {
                                         <a href="#" className="edu-btn btn-medium enroll-btn">Take This Course</a>
                                         <div className="login-btn">
                                             <span>or</span>
-                                            <Link href="/sign-in">
+                                            <NavLink href="/sign-in">
                                                 <a>Login</a>
-                                            </Link>
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </div>

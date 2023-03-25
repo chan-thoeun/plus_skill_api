@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MainMenu from '../headers/component/main-menu';
 import HeaderTopRight from '../headers/component/header-top-right';
@@ -54,12 +55,12 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                         <div className="header-navbar">
                             <div className="header-brand">
                                 <div className="logo">
-                                    <Link href={'/'}>
+                                    <a href={'/'}>
                                         <a>
                                             <img className="logo-light" src='/assets/images/logo/logo-dark.png' alt="logo" />
                                             <img className="logo-dark" src='/assets/images/logo/logo-white.png' alt="logo" />
                                         </a>
-                                    </Link>
+                                    </a>
                                 </div>
 
                                 { ! disable_category &&
@@ -72,7 +73,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                                         {
                                                             categories.map((category, i) => (
                                                                 <li key={i}>
-                                                                    <Link href={`${category.link}`}><a>{category.title}</a></Link>
+                                                                    <NavLink to={`${category.link}`}><a>{category.title}</a></NavLink>
                                                                 </li>
                                                             ) )
                                                         }
