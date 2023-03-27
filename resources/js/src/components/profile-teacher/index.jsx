@@ -1,32 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Footer, Header } from '../../layout';
 import BreadcrumbThree from '../breadcrumb/breadcrumb-3';
-import CheckoutArea from './checkout-area';
-
-const countries = [ 
-    'Select Option', 
-    'Australia', 
-    'England', 
-    'New Zealand', 
-    'Switzerland', 
+const countries = [
+    'Select Option',
+    'Australia',
+    'England',
+    'New Zealand',
+    'Switzerland',
     'United Kindom (UK)',
     'United States (USA)'
 ];
+import { getUserById } from '../../services/partner/user';
 
 const index = () => {
+    const [mounted, setMounted] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
+
+    const handleGetData = async() => {
+        const res = await getUserById(7);
+    }
+
+    useEffect(() => {
+		if(mounted == false ){
+			handleGetData(7);
+		}
+	}, [mounted])
+
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">
                 <Header no_top_bar={true} />
-                <BreadcrumbThree title="Checkout Page" subtitle="Checkout" />
-                <section className="checkout-page-area section-gap-equal">
+                <BreadcrumbThree title="Your Account" subtitle="Profile" />
+                <section className="checkout-page-area section-gap-equal p-0">
                     <div className="container">
                         <form>
                             <div className="row row--25">
                                 <div className="col-lg-12">
+                                    <div class="blog-author justify-content-center p-5">
+                                        <div class="thumbnail">
+                                            <img src="/assets/images/blog/author-01.jpg" alt="Author Images" />
+                                        </div>
+                                    </div>
                                     <div className="checkout-billing">
-                                        <h3 className="title">Billing Details</h3>
                                         <div className="row g-lg-5">
                                             <div className="col-lg-6">
                                                 <div className="form-group">
@@ -107,10 +122,12 @@ const index = () => {
                                             </div>
                                         </div>
 
-                                        <div className="form-group mt--50 mb-0">
+                                        <div className="form-group mt--50 mb-3">
                                             <label>Order Notes</label>
                                             <textarea id="notes" rows="4" placeholder="Notes about your order, e.g. speacial notes for delivery."></textarea>
                                         </div>
+                                        <div class="form-group col-12">
+                                            <button class="rn-btn edu-btn submit-btn" name="submit" type="submit">Submit Now <i class="icon-4"></i></button></div>
                                     </div>
                                 </div>
                             </div>

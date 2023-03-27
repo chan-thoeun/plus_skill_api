@@ -6,7 +6,6 @@ const userSignIn = async (body) => {
 }
 const userSignUp = async (body) => {
     const response = await await API_SERVICE.postData(`register`, body);
-    console.log('response',response);
     return response;
 }
 const logout = async (body) => {

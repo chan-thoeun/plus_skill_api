@@ -16,8 +16,6 @@ class CreatePartnersTable extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->foreignID('user_id')->constrained();
-            $table->string('first_name');
-            $table->string('last_name');
             $table->integer('gender')->default(0);
             $table->string('phone');
             $table->datetime('date_of_birth');

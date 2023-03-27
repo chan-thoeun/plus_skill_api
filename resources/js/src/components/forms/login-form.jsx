@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { loginSchema } from '../../utils/validation-schema';
+import { setCurrentUser , getCurrentUser } from '../../utils/auth';
 import ErrorMsg from './error-msg';
 import { toast } from "react-toastify";
 import { userSignIn } from '../../services/auth/Auth';
-import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -20,6 +21,7 @@ const LoginForm = () => {
                     toast.success(`Login successfully`, {
                         position: 'top-right'
                     })
+                    setCurrentUser(res?.data)
                     navigate('/')
                 }
             }catch(error){

@@ -22,7 +22,7 @@ const RegisterForm = () => {
                     toast.success(`Register successfully`, {
                         position: 'top-right'
                     })
-                    navigate('')
+                    navigate('/')
                 }
             }
             catch(error){

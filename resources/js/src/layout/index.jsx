@@ -1,3 +1,6 @@
+import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import routes from '../router';
 import Header from "./headers/header";
 import HeaderTwo from "./headers/header-2";
 import HeaderThree from "./headers/header-3";
@@ -7,6 +10,27 @@ import FooterThree from "./footers/footer-3";
 import FooterFour from "./footers/footer-4";
 import Wrapper from "./wrapper";
 
+const Layouts = () => {
+    return (
+        <Routes>
+            {routes.map((route, idx) => {
+                return (
+                    route.element && (
+                        <Route
+                            key={idx}
+                            path={route.path}
+                            exact={route.exact}
+                            name={route.name}
+                            element={<route.element />}
+                        />
+                    )
+                )
+            })}
+            <Route path="/" element={<Navigate to="home" replace />} />
+        </Routes>
+    )
+}
+
 export {
     Header,
     HeaderTwo,
@@ -15,5 +39,6 @@ export {
     FooterTwo,
     FooterThree,
     FooterFour,
-    Wrapper
+    Wrapper,
+    Layouts
 }
