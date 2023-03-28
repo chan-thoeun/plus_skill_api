@@ -120,7 +120,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                                 <img src="https://edublink.react.devsblink.com/assets/images/blog/comment-01.jpg" alt="Comment Images" style={{width: "50px", borderRadius: "50px"}}/>
                                             </a>
                                         </a>
-                                        <div className="mainmenu edublink-header-mini-cart">
+                                        <div className="edublink-header-mini-cart">
                                             <div className="wrapper empty-cart-wrapper-profile">
                                                 <a href="#" style={{ height: "40px" }}>
                                                     <li>
