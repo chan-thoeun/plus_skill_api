@@ -63,8 +63,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'json.response' => \App\Http\Middleware\JsonResponseMiddleware::class, //accpt respon json
-        'cors' => \App\Http\Middleware\Cors::class, //accpt origin (accpt type)
+        'check-header' => \App\Http\Middleware\CheckHeader::class, //accpt respon json
         'jwt-auth' => \App\Http\Middleware\jwtMiddleware::class,
 
         //role

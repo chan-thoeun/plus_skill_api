@@ -19,19 +19,17 @@ use App\Http\Controllers\Api\Partner\UserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//users
+Route::post('/register', [AuthController::class, 'register'])->name('api.register');
+Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 
-Route::group(['middleware' => ['cors', 'json.response']], function () {
-    //users
-    Route::post('/register', [AuthController::class, 'register'])->name('api.register');
-    Route::post('/login', [AuthController::class, 'login'])->name('api.login');
+Route::group(['middleware' => 
+    ['auth:api', 
+    'check-header'
+]], function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('api.logout');
 
    //users
     Route::resource('profile-teacher', UserController::class);
 });
-
-// Route::group(['middleware' => ['cors', 'json.response']], function () {
-//     //users
-//     Route::get('/profile', [AuthController::class, 'index'])->name('api.index');
-// });
 

@@ -19,8 +19,7 @@ class AuthStudent
         if ( Auth::check() && Auth::user()->isStudent() ){
             return $next($request);
         }else{
-            $message = ["message" => "Permission Denied"];
-            return response($message, 401);
+            return response()->json(["message" => "Permission Denied"], 401);
         }
     }
 }

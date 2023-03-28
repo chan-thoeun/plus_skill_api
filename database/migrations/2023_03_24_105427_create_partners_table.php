@@ -15,7 +15,7 @@ class CreatePartnersTable extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('user_id')->constrained();
+            $table->unsignedBigInteger('user_id');
             $table->integer('gender')->default(0);
             $table->string('phone');
             $table->datetime('date_of_birth');
@@ -25,6 +25,8 @@ class CreatePartnersTable extends Migration
             $table->text('profile')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
