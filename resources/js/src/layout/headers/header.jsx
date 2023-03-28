@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MainMenu from '../headers/component/main-menu';
 import HeaderTopRight from '../headers/component/header-top-right';
@@ -40,7 +39,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                         <div className="container-fluid">
                             <div className="header-top">
                                 <div className="header-top-left">
-                                    {/* <HeaderTopLeft /> */}
+                                    <HeaderTopLeft />
                                 </div>
                                 <div className="header-top-right">
                                     <HeaderTopRight />
@@ -73,7 +72,7 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                                         {
                                                             categories.map((category, i) => (
                                                                 <li key={i}>
-                                                                    <NavLink to={`${category.link}`}><a>{category.title}</a></NavLink>
+                                                                    <a href={`${category.link}`}><a>{category.title}</a></a>
                                                                 </li>
                                                             ) )
                                                         }
@@ -116,8 +115,31 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                         <Cart />
                                     </li>
                                     <li className="icon cart-icon">
-                                        <img src="https://edublink.react.devsblink.com/assets/images/blog/comment-01.jpg" alt="Comment Images" style={{width: "50px", borderRadius: "50px"}}/>
-                                        <Cart />
+                                        <a href='#'>
+                                            <a className="cart-icon">
+                                                <img src="https://edublink.react.devsblink.com/assets/images/blog/comment-01.jpg" alt="Comment Images" style={{width: "50px", borderRadius: "50px"}}/>
+                                            </a>
+                                        </a>
+                                        <div className="mainmenu edublink-header-mini-cart">
+                                            <div className="wrapper empty-cart-wrapper-profile">
+                                                <a href="#" style={{ height: "40px" }}>
+                                                    <li>
+                                                        <h5 className="empty-cart">Profile</h5>
+                                                    </li>
+                                                </a>
+                                                <a href="#" style={{ height: "40px" }}>
+                                                    <li>
+                                                        <h5 className="empty-cart">Settings</h5>
+                                                    </li>
+                                                </a>
+                                                <a href="#" style={{ height: "40px" }}>
+                                                    <li>
+                                                        <h5 className="empty-cart">Log Out</h5>
+                                                    </li>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {/* <CartProfile /> */}
                                     </li>
                                     <li className="header-btn">
                                         <Link href="/contact-us">
