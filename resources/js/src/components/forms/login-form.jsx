@@ -21,8 +21,8 @@ const LoginForm = () => {
                     toast.success(`Login successfully`, {
                         position: 'top-right'
                     })
-                    setCurrentUser(res?.data)
-                    navigate('/')
+                    setCurrentUser(res?.data);
+                    window.location.replace('/');
                 }
             }catch(error){
                 const errorMessage = error?.message;
