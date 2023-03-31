@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import MainMenu from '../headers/component/main-menu';
@@ -10,6 +10,7 @@ import { wishlistItems } from '../../redux/features/wishlist-slice';
 import useCartInfo from '../../hooks/use-cart-info';
 import OffCanvas from '../../components/common/sidebar/off-canvas';
 import Cart from './component/cart';
+import { clearCurrentUser, getCurrentUser } from '../../utils/auth';
 
 const categories = [
     { link: '/course-style-1', title: 'Design' },
@@ -30,6 +31,27 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
     const wishlists = useSelector(wishlistItems);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    const getUserLogin = async () =>{
+        let users = await getCurrentUser();
+        if(users?.token !== undefined && users?.token !== null){
+            setIsLogin(true);
+            setMounted(true);
+        }
+    }
+
+    const logoutAccount = async() => {
+        let status = await clearCurrentUser();
+        if(status === true)
+            window.location.replace("/sign_in");
+    }
+
+    useEffect(() => {
+        if(mounted === false)
+            getUserLogin();
+    }, [mounted])
 
     return (
         <>
@@ -114,33 +136,42 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                         </Link>
                                         <Cart />
                                     </li>
-                                    <li className="icon cart-icon">
-                                        <a href='#'>
-                                            <a className="cart-icon">
-                                                <img src="https://edublink.react.devsblink.com/assets/images/blog/comment-01.jpg" alt="Comment Images" style={{width: "50px", borderRadius: "50px"}}/>
+                                    {isLogin === true ?
+                                        <li className="icon cart-icon">
+                                            <a href='#'>
+                                                <a className="cart-icon">
+                                                    <img src="https://edublink.react.devsblink.com/assets/images/blog/comment-01.jpg" alt="Comment Images" style={{width: "50px", borderRadius: "50px"}}/>
+                                                </a>
                                             </a>
-                                        </a>
-                                        <div className="edublink-header-mini-cart">
-                                            <div className="wrapper empty-cart-wrapper-profile">
-                                                <a href="#" style={{ height: "40px" }}>
-                                                    <li>
-                                                        <h5 className="empty-cart">Profile</h5>
-                                                    </li>
-                                                </a>
-                                                <a href="#" style={{ height: "40px" }}>
-                                                    <li>
-                                                        <h5 className="empty-cart">Settings</h5>
-                                                    </li>
-                                                </a>
-                                                <a href="#" style={{ height: "40px" }}>
-                                                    <li>
-                                                        <h5 className="empty-cart">Log Out</h5>
-                                                    </li>
-                                                </a>
+                                            <div className="edublink-header-mini-cart">
+                                                <div className="wrapper empty-cart-wrapper-profile">
+                                                    <a href="#" style={{ height: "40px" }}>
+                                                        <li>
+                                                            <h5 className="empty-cart">Profile</h5>
+                                                        </li>
+                                                    </a>
+                                                    <a href="#" style={{ height: "40px" }}>
+                                                        <li>
+                                                            <h5 className="empty-cart">Settings</h5>
+                                                        </li>
+                                                    </a>
+                                                    <a href="#" style={{ height: "40px" }} onClick={() => logoutAccount()}>
+                                                        <li>
+                                                            <h5 className="empty-cart">Log Out</h5>
+                                                        </li>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        {/* <CartProfile /> */}
-                                    </li>
+                                        </li>
+                                    :
+                                        <li className="icon cart-icon">
+                                            <a href='#'>
+                                                <a className="cart-icon">
+                                                    <img src="https://edublink.react.devsblink.com/assets/images/blog/comment-03.jpg" alt="Comment Images" style={{width: "50px", borderRadius: "50px"}}/>
+                                                </a>
+                                            </a>
+                                        </li>
+                                    }
                                     <li className="header-btn">
                                         <Link href="/contact-us">
                                             <a className="edu-btn btn-medium">Try for free

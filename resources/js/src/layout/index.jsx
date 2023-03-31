@@ -9,6 +9,7 @@ import FooterTwo from "./footers/footer-2";
 import FooterThree from "./footers/footer-3";
 import FooterFour from "./footers/footer-4";
 import Wrapper from "./wrapper";
+import ErrorPage from '../pages/404';
 
 const Layouts = () => {
     return (
@@ -27,6 +28,7 @@ const Layouts = () => {
                 )
             })}
             <Route path="/" element={<Navigate to="home" replace />} />
+            <Route exact path="*" name="Course Style 1" element={<ErrorPage />} />
         </Routes>
     )
 }

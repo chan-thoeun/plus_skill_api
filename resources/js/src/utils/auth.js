@@ -29,5 +29,5 @@ export const clearCurrentUser = () => {
 	localStorage.app = null;
 	delete localStorage.app;
 	localStorage.clear();
-	return;
+	return true;
 };
