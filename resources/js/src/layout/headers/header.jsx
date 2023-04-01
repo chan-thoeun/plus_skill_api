@@ -12,6 +12,8 @@ import OffCanvas from '../../components/common/sidebar/off-canvas';
 import Cart from './component/cart';
 import { clearCurrentUser, getCurrentUser } from '../../utils/auth';
 
+import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
+
 const categories = [
     { link: '/course-style-1', title: 'Design' },
     { link: '/course-style-1', title: 'Development' },
@@ -173,10 +175,10 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                         </li>
                                     }
                                     <li className="header-btn">
-                                        <Link href="/contact-us">
-                                            <a className="edu-btn btn-medium">Try for free
-                                            <i className="icon-4"></i></a>
-                                        </Link>
+                                        <ConnectWallet  
+                                            btnTitle="Connect Wallet"
+                                            className="edu-btn btn-smal"
+                                        />
                                     </li>
                                     <li className="mobile-menu-bar d-block d-xl-none">
                                         <button className="hamberger-button" onClick={() => setIsOpen(true)}>
