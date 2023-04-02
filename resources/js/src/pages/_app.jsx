@@ -6,6 +6,7 @@ import SignUp from './auth/sign-up';
 import ProfileTeacher from './partner/profile-teacher';
 import { PrivateRoute } from '../route';
 import { Layouts } from '../layout';
+import '../../../css/app.css';
 
 import CourseStyle1 from '../components/course-style-1';
 import CourseStyle2 from '../components/course-style-2';
