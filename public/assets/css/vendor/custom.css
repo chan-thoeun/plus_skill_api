@@ -1,0 +1,8 @@
+.image-upload {
+	background: #f7f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}

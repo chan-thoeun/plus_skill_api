@@ -4,7 +4,7 @@ import { registerSchema } from '../../utils/validation-schema';
 import ErrorMsg from './error-msg';
 import Link from 'next/link';
 import { toast } from "react-toastify";
-import { userSignUp } from '../../services/auth/Auth';
+import { userRegister } from '../../services/auth/Auth';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
@@ -17,11 +17,12 @@ const RegisterForm = () => {
 
         onSubmit: async(values, { resetForm }) => {
             try {
-                const res = await userSignUp(values);
+                const res = await userRegister(values);
                 if(res){
                     toast.success(`Register successfully`, {
                         position: 'top-right'
                     })
+                    resetForm()
                     navigate('/')
                 }
             }
@@ -35,11 +36,11 @@ const RegisterForm = () => {
     })
     return (
         <form onSubmit={handleSubmit}>
-             <div className="form-group">
+            <div className="form-group d-flex">
                 <div className="edu-form-check">
-                    <input type="radio" id="teacher" name="roles" value="2" onChange={handleChange}/><label for="teacher">Teacher</label>
+                    <input type="radio" id="teacher" name="roles" value="2" onChange={handleChange} checked /><label for="teacher">Teacher</label>
                 </div>
-                <div className="edu-form-check mb-3">
+                <div className="edu-form-check mb-3 ms-4">
                     <input type="radio" id="student" name="roles" value="3" onChange={handleChange}/><label for="student">Student</label>
                 </div>
             </div>

@@ -1,11 +1,11 @@
 import * as API_SERVICE from "../Service";
 
-const userSignIn = async (body) => {
-    const response = await await API_SERVICE.postData(`login`, body);
+const userLogin = async (body) => {
+    const response = await API_SERVICE.postData(`login`, body);
     return response;
 }
-const userSignUp = async (body) => {
-    const response = await await API_SERVICE.postData(`register`, body);
+const userRegister = async (body) => {
+    const response = await API_SERVICE.postData(`register`, body);
     return response;
 }
 const logout = async (body) => {
@@ -14,7 +14,7 @@ const logout = async (body) => {
 };
 
 export {
-    userSignIn,
-    userSignUp,
+    userLogin,
+    userRegister,
     logout,
 };

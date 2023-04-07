@@ -14,14 +14,3 @@ const routes = [
 
 ]
 export default routes;
-
-                    // {/* routes component */}
-                    // {/* <PrivateRoute>
-                    //     <Route exact path="/course-style-1" name="Course Style 1" element={<CourseStyle1 />} />
-                    //     <Route exact path="/course-style-2" name="Course Style 2" element={<CourseStyle2 />} />
-                    //     <Route exact path="/course-style-3" name="Course Style 3" element={<CourseStyle3 />} />
-                    //     <Route exact path="/course-style-4" name="Course Style 4" element={<CourseStyle4 />} />
-                    //     <Route exact path="/course-style-5" name="Course Style 5" element={<CourseStyle5 />} />
-                    // </PrivateRoute> */}
-                    
-                    // <Route exact path

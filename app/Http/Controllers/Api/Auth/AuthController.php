@@ -30,6 +30,7 @@ class AuthController extends Controller
                 ], 401);
             }
             $user->token = $token;
+            $user->update(array('token' => $user->token));
             return response()->json(['data' => $user, "message" => "Login Success", 'status' =>  200]);
         } else {
             return response()->json(["message" =>'User does not exist'], 422);

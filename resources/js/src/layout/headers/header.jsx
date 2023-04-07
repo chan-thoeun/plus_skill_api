@@ -12,7 +12,7 @@ import OffCanvas from '../../components/common/sidebar/off-canvas';
 import Cart from './component/cart';
 import { clearCurrentUser, getCurrentUser } from '../../utils/auth';
 
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
+// import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 
 const categories = [
     { link: '/course-style-1', title: 'Design' },
@@ -147,9 +147,9 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                             </a>
                                             <div className="edublink-header-mini-cart">
                                                 <div className="wrapper empty-cart-wrapper-profile">
-                                                    <a href="#" style={{ height: "40px" }}>
+                                                    <a href={"/profile-teacher?id="+ getCurrentUser().id} style={{ height: "40px" }}>
                                                         <li>
-                                                            <h5 className="empty-cart">Profile</h5>
+                                                            <h5 className="empty-cart">My Account</h5>
                                                         </li>
                                                     </a>
                                                     <a href="#" style={{ height: "40px" }}>
@@ -175,10 +175,10 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                         </li>
                                     }
                                     <li className="header-btn">
-                                        <ConnectWallet  
+                                        {/* <ConnectWallet  
                                             btnTitle="Connect Wallet"
                                             className="edu-btn btn-smal"
-                                        />
+                                        /> */}
                                     </li>
                                     <li className="mobile-menu-bar d-block d-xl-none">
                                         <button className="hamberger-button" onClick={() => setIsOpen(true)}>

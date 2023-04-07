@@ -11,6 +11,7 @@
 
         <link href="../../assets/css/vendor/icomoon.css" rel="stylesheet">
         <link href="../../assets/css/vendor/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../assets/css/vendor/custom.css">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body>

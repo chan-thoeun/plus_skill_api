@@ -1,21 +1,25 @@
 <?php
 
-namespace App\Models\Partner;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Partner extends Model
+class Profile extends Model
 {
+    protected $table = 'profiles';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'user_id', 
         'gender', 
         'phone', 
         'date_of_birth', 
         'address', 
-        'country', 
-        'city', 
-        'profile',
+        'photo',
+        'twitter',
+        'facebook',
+        'linkedin',
+        'youtube',
         'status'
     ];
 }

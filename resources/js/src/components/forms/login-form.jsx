@@ -5,7 +5,7 @@ import { loginSchema } from '../../utils/validation-schema';
 import { setCurrentUser , getCurrentUser } from '../../utils/auth';
 import ErrorMsg from './error-msg';
 import { toast } from "react-toastify";
-import { userSignIn } from '../../services/auth/Auth';
+import { userLogin } from '../../services/auth/Auth';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const LoginForm = () => {
         validationSchema: loginSchema,
         onSubmit: async(values) => {
             try {
-                const res = await userSignIn(values);
+                const res = await userLogin(values);
                 if(res.status == 200){
                     toast.success(`Login successfully`, {
                         position: 'top-right'
