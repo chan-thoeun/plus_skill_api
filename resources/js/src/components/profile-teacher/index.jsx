@@ -233,7 +233,8 @@ const index = () => {
                                                                                 return (
                                                                                     <img src={showImage} alt="Author Images" onClick={() => inputRef.current.click()} />
                                                                                 )
-                                                                            } else if (image) {
+                                                                            } 
+                                                                            if (image) {
                                                                                 return (
                                                                                     <Cropper
                                                                                         ref={cropperRef}
@@ -260,9 +261,7 @@ const index = () => {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <button style={{ float: "right" }} onClick={getCropData}>
-                                                                Crop Image
-                                                            </button>
+                                                                <button style={{ float: "right" }} onClick={getCropData}>Crop Image</button>
                                                                 <div class="form-group col-12">
                                                                     <button  class="rn-btn edu-btn submit-btn" type="submit" onClick={() => handleUpload(showImage)}>Save<i class="icon-4"></i></button></div>
                                                                 </div>
