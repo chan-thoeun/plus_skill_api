@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, HeaderTwo } from '../../../layout';
+import { Footer, Header } from '../../../layout';
 import BreadcrumbTwo from '../../breadcrumb/breadcrumb-2';
 import CtaArea from '../../homes/home-online-academy/cta-area';
 import TeamArea from './team-area';
@@ -12,7 +12,7 @@ const index = () => {
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">
-                <HeaderTwo style_3={true} no_topBar={true} />
+                <Header style_3={true} no_topBar={true} />
                 <BreadcrumbTwo subtitle="About Us 03" />
                 <AboutUsArea/>
                 <CounterArea about_p_3={true} />

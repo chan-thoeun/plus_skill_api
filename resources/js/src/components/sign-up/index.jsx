@@ -8,8 +8,7 @@ const index = () => {
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">
-                <Header no_top_bar={true} />
-                <BreadcrumbThree title="My Account" subtitle="Account" />
+                <Header no_top_bar={false} />
                 <section className="account-page-area section-gap-equal">
                     <div className="container position-relative">
                         <div className="row g-5 justify-content-center">

@@ -80,8 +80,8 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                 <div className="logo">
                                     <a href={'/'}>
                                         <a>
-                                            <img className="logo-light" src='/assets/images/logo/logo-dark.png' alt="logo" />
-                                            <img className="logo-dark" src='/assets/images/logo/logo-white.png' alt="logo" />
+                                            <img className="logo-light" src='/assets/images/logo/plus-skill.png' alt="logo" />
+                                            <img className="logo-dark" src='/assets/images/logo/plus-skill.png' alt="logo" />
                                         </a>
                                     </a>
                                 </div>
@@ -147,6 +147,11 @@ const Header = ({ header_style, no_top_bar, disable_full_width, disable_category
                                             </a>
                                             <div className="edublink-header-mini-cart">
                                                 <div className="wrapper empty-cart-wrapper-profile">
+                                                    <a href={'/dashbaord'} style={{ height: "40px" }}>
+                                                        <li>
+                                                            <h5 className="empty-cart">Dashbaord</h5>
+                                                        </li>
+                                                    </a>
                                                     <a href={"/profile-teacher?id="+ getCurrentUser().id} style={{ height: "40px" }}>
                                                         <li>
                                                             <h5 className="empty-cart">My Account</h5>

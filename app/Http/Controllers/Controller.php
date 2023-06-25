@@ -10,4 +10,16 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
+    public function uploadImage($file, $type = 'image')
+    {
+        return Storage::disk('public')->put($type, $file);
+    }
+
+    public function removeExistImage($path)
+    {
+        if (Storage::disk('public')->exists($path)) {
+            return Storage::disk('public')->delete($path);
+        }
+    }
 }

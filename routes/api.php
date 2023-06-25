@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\AuthController;
-use App\Http\Controllers\Api\Profile\ProfileController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,22 +16,21 @@ use App\Http\Controllers\Api\Profile\ProfileController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//users
+//public route
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:api', 'check-header']], function () {
-    Route::get('/user', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
-   //users
-    // Route::resource('profile', PartnerController::class);
+    // Route::post('/upload/image', [UserController::class, 'upload']);
+    Route::resource('user', UserController::class);
+    
 
 });
-Route::post('/photo/{id}', [ProfileController::class, 'uploadphoto']);
-Route::resource('profile', ProfileController::class);
 
 
+Route::post('/upload/image', [UserController::class, 'upload']);

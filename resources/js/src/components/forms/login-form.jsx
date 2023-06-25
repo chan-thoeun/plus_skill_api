@@ -23,6 +23,11 @@ const LoginForm = () => {
                     })
                     setCurrentUser(res?.data);
                     window.location.replace('/');
+                    // if(res?.data.roles == 1){
+                    //     window.location.replace('/admin');
+                    // }else {
+                    //     window.location.replace('/');
+                    // }
                 }
             }catch(error){
                 const errorMessage = error?.message;

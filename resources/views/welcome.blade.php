@@ -13,6 +13,9 @@
         <link href="../../assets/css/vendor/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" href="../../assets/css/vendor/custom.css">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+        <!-- Style css -->
+        {{-- <link href="../../assets1/css/style.css" rel="stylesheet"> --}}
+        
     </head>
     <body>
         <div id="root"></div>
