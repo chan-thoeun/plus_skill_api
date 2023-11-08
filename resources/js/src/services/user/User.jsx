@@ -7,7 +7,9 @@ const getUserById = async (id) => {
     return await API_SERVICE.getData(`user/${id}/edit`);
 }
 const uploadImage = async (body) => {
-    return await API_SERVICE.postData(`upload/image`, body);
+    const res =  await API_SERVICE.postData(`upload/image`, body);
+    console.log('res1', res);
+    return res;
 }
 export {
 	updateUser,

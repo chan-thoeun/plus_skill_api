@@ -19,18 +19,21 @@ use App\Http\Controllers\Api\UserController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//public route
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::group(['prefix' => 'v1'], function () {
+    //public route
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
 
-Route::group(['middleware' => ['auth:api', 'check-header']], function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
 
-    // Route::post('/upload/image', [UserController::class, 'upload']);
-    Route::resource('user', UserController::class);
+
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::resource('user', UserController::class);
+        Route::post('upload/image', [UserController::class, 'upload']);
     
-
+    });
 });
 
 
-Route::post('/upload/image', [UserController::class, 'upload']);
+
+

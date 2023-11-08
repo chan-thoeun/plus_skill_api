@@ -20,9 +20,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //
         $user = User::with('profile')->first();
-      return response()->json(["data" => $user]);
+        return response()->json(["data" => $user]);
     }
 
     /**
@@ -43,7 +42,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required|string|max:10',
+            'email'    => 'required|string|email|max:50',
+        ]);
+        if ($validator->fails()){
+            return response(['failed'=>$validator->errors()->all()], 422);
+        }
+        User::create([
+            "gender"        => $request->gender,
+            "phone"         => $request->phone,
+            "dob"           => $request->dob,
+            "about"         => $request->about,
+            "address"       => $request->address,
+            "twitter"       => $request->twitter,
+            "facebook"      => $request->facebook,
+            "linkedin"      => $request->linkedin,
+            "youtube"       => $request->youtube,
+            "status"        => $request->status,
+        ]);
+        return response()-json([ "message" => "Create User Sucess", 'status' =>  200]); 
     }
 
     /**
@@ -66,7 +84,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::with('profile')->where('id', $id)->first();
-          return response()->json($user);
         return response()->json(['data'=> $user]);
     }
 
@@ -99,6 +116,7 @@ class UserController extends Controller
                 "gender"        => $request->gender,
                 "phone"         => $request->phone,
                 "dob"           => $request->dob,
+                "about"         => $request->about,
                 "address"       => $request->address,
                 "twitter"       => $request->twitter,
                 "facebook"      => $request->facebook,
@@ -109,6 +127,7 @@ class UserController extends Controller
         );
         return response([ "message" => "Create User Sucess", 'status' =>  200]); 
     }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -122,16 +141,13 @@ class UserController extends Controller
     //upload profile
     public function upload(Request $request)
     {
-         return response()->json(Auth::guard('api')->user()->id);
-        $validator = Validator::make($request->all(), [
-            'image'  => 'required',
+        $validator   = Validator::make($request->all(), [
+            'image'  => 'required'
         ]);
         if ($validator->fails()){
             return response(['failed'=>$validator->errors()->all()], 422);
         }
-        $user = User::findOrFail(Auth::guard('api')->user()->id);
-        // $user = User::with('profile')->first();
-        return response()->json('pppp', $user);
+        $user = User::with('profile')->where('id', Auth::guard('api')->user()->id)->first();
         $image = '';
         if ($request->hasFile('image')){
             $image = $this->uploadImage($request->file('image'));
@@ -146,7 +162,7 @@ class UserController extends Controller
                 'user_id' => Auth::guard('api')->user()->id,
             ],
             [
-                "image"   => $request->$image,
+                "image"   =>  $image
             ]
         );
         return response()->json([ "message" => "Upload Image Sucess", 'status' =>  200]);   

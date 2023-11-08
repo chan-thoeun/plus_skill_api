@@ -16,7 +16,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 	<React.Fragment>
-	<ToastContainer />
 	<Provider store={ store }>
 		<ThemeProvider defaultTheme="light">
 			<MouseMoveProvider>

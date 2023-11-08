@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use App\Models\Profile;
 
 class User extends Authenticatable
 {
@@ -19,7 +18,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'terms'
+        'name', 
+        'phone', 
+        'password', 
+        'terms',
+        'gender', 
+        'dob', 
+        'address', 
+        'image',
+        'twitter',
+        'facebook',
+        'linkedin',
+        'youtube',
+        'status'
     ];
 
     /**
@@ -38,8 +49,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function profile()
-    {
-        return $this->hasOne(Profile::class, 'user_id', 'id');
-    }
 }

@@ -1,8 +1,13 @@
-.image-upload {
-	background: #f7f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    position: relative;
+.droupdown-profile li {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 7px;
+    display: block;
+    margin: unset !important;
+    line-height: normal !important;
+}
+.droupdown-profile li a {
+    font-size: 18px !important;
+    height: unset !important;
+    line-height: unset !important;
 }

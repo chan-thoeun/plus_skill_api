@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, HeaderTwo } from '../../../layout';
+import { Footer, Header } from '../../../layout';
 import Categories from './categories';
 import Courses from './courses';
 import HeroArea from './hero-area';
@@ -16,7 +16,7 @@ const index = () => {
     return (
         <div className='sticky-header'>
             <div id="main-wrapper" className="main-wrapper">
-                <HeaderTwo style_3={true} />
+                <Header style_3={true} />
                 <HeroArea/>
                 <Categories/>
                 <Courses/>

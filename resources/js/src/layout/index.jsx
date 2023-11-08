@@ -5,7 +5,6 @@ import Header from "./headers/header";
 import Footer from "./footers/footer";
 import Wrapper from "./wrapper";
 import ErrorPage from '../pages/404';
-// import '../css/app.css';
 
 const DefaultLayout = () => {
     return (

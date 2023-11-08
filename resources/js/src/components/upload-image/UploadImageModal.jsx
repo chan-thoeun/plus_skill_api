@@ -2,20 +2,32 @@ import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
+import { toast } from "react-toastify";
 import { dataURLtoFile } from '../../utils/URLtoFile';
 import { uploadImage } from '../../services/user/User';
 
-export default function UploadImageModal({showModal, setShowModal, previewImage, setImage}) {
+export default function UploadImageModal({showModal, setShowModal, previewImage, setMounted}) {
     const cropperRef = React.createRef();
     const handleClose = () => setShowModal(false);
 
     const handleCropImage = async () => {
-        if (typeof cropperRef.current?.cropper !== "undefined") {
-            const res = await uploadImage(dataURLtoFile(cropperRef.current?.cropper.getCroppedCanvas().toDataURL(), Math.floor((Math.random() * 100) + 1)+ ".jpg"));
-console.log('res', res);
-            // console.log('cropperRef.current?.cropper.getCroppedCanvas()',cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
-            // setImage(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+        try {
+            let file = dataURLtoFile(cropperRef.current?.cropper.getCroppedCanvas().toDataURL(), Math.floor((Math.random() * 100) + 1)+ ".jpg");
+            const formData = new FormData();
+            formData.append("image", file);
+            const res = await uploadImage(formData);
+            if(res){
+                toast.success(`Login successfully`, {
+                    position: 'top-right'
+                })
+                setMounted(false)
+            }
             handleClose()
+        } catch (error) {
+            const errorMessage = error?.message;
+            toast.error(`${errorMessage}`, {
+                position: 'top-right'
+            })
         }
     };
     return (
