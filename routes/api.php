@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Auth\AuthController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\transactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,14 +24,12 @@ Route::group(['prefix' => 'v1'], function () {
     //public route
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
-
-
-
-    Route::group(['middleware' => ['auth:api']], function () {
+    Route::resource('transaction', transactionController::class);
+    Route::group(['middleware' => ['auth']], function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::resource('user', UserController::class);
         Route::post('upload/image', [UserController::class, 'upload']);
-    
+       
     });
 });
 
